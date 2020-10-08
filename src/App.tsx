@@ -6,6 +6,7 @@ import FadeoutContainer from "./FadeoutContainer";
 import "./styles.css";
 import { createUseStyles } from "react-jss";
 import clsx from "clsx";
+import Dots from "./Dots";
 
 const useStyles = createUseStyles({
   root: {
@@ -24,8 +25,33 @@ const useStyles = createUseStyles({
   },
   night: {
     // backgroundColor: "green"
-  }
+  },
+  top: {
+    // transform: 'translateX(210px) translateY(-58px) rotate(42deg)',
+    backgroundColor: 'yellow',
+    postion: 'absolute',
+    left: 10,
+    top: 10,
+    height: 100,
+    // width: 15,
+    // composes: 'flexRow alignCenter justifyCenter',
+  },
+  left: {
+    // transform: 'translateX(210px) translateY(-58px) rotate(42deg)',
+    backgroundColor: 'green',
+    postion: 'absolute',
+    left: 100,
+    top: 10,
+    height: 100,
+    transform: 'translateX(-220px) rotate(42deg)'
+    // width: 15,
+    // composes: 'flexRow alignCenter justifyCenter',
+  },
+
 });
+
+const top = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+const left = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 const App = () => {
   const classes = useStyles();
   const [night, setNight] = useState(false);
@@ -43,6 +69,10 @@ const App = () => {
   return (
     <div className={classes.root}>
       <AnimatePresence exitBeforeEnter>
+          {/* <FadeoutContainer
+            text="DAY"
+            className={clsx(classes.day, classes.main)}
+          /> */}
         {!night && (
           <FadeoutContainer
             text="DAY"
@@ -56,6 +86,21 @@ const App = () => {
           />
         )}
       </AnimatePresence>
+        {!night && (
+          <Dots
+            data={top} 
+            className={classes.top} 
+            coeff={6} 
+          />
+        )}
+        {night && (
+          <Dots
+            data={left} 
+            className={classes.left} 
+            coeff={6} 
+            // startAnimation={startAnimation} 
+          />
+        )}
     </div>
   );
 };
