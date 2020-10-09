@@ -98,6 +98,7 @@ const App = () => {
             data={left} 
             className={classes.left} 
             coeff={6} 
+            reversed
             // startAnimation={startAnimation} 
           />
         )}
